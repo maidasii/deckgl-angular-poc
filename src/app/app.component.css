@@ -1,0 +1,5 @@
+.navbar {
+  position: relative; /* oder 'fixed', je nach Bedarf */
+  z-index: 1000;
+}
+
