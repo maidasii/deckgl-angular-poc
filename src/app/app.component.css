@@ -3,3 +3,8 @@
   z-index: 1000;
 }
 
+mgl-map {
+  margin-top: 20px;
+  height: 500px; /* oder jede andere Größe */
+  width: 100%;
+}

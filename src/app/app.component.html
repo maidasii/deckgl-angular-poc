@@ -1,20 +1,72 @@
 <nav class="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
   <div class="container-fluid">
-    <span class="navbar-brand mb-0 h1">Market Potential Intelligence - Proof of Concept</span>
+      <span class="navbar-brand mb-0 h1">Market Potential Intelligence - Proof of Concept</span>
   </div>
 </nav>
-
+<div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+  Kartenstil auswählen
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <li *ngFor="let style of mapStyles">
+          <a class="dropdown-item" href="#" (click)="setMapStyle(style.url)">{{style.name}}</a>
+      </li>
+  </ul>
+</div>
 <div class="container text-center">
   <div class="row row-cols-2">
-    <div class="col">
-      <h1>card-1</h1>
-      <app-deckgl-map></app-deckgl-map>
-    </div>
-    <div class="col">
-      <h1>card-2</h1>
-      <app-mapbox-map></app-mapbox-map>
-    </div>
-    <div class="col">Column</div>
-    <div class="col">Column</div>
+      <div class="col">
+          <h1>card-1</h1>
+          <app-deckgl-map></app-deckgl-map>
+      </div>
+      <div class="col">
+          <h1>card-2</h1>
+          <app-mapbox-map></app-mapbox-map>
+      </div>
+      <div class="col">
+          <h1>card-3</h1>
+          <mgl-map
+          [style]="selectedStyle"
+          [zoom]="[9]"
+          [center]="[10.451526, 51.165691]">
+          </mgl-map>
+          <br>
+      </div>
+      <div class="col">
+          <h1>card-4</h1>
+          <mgl-map [style]="'mapbox://styles/mapbox/light-v10'" [center]="[13.404954, 52.520008]" [zoom]="[15]" [pitch]="[45]" [bearing]="[-17.6]">
+          <mgl-layer
+          id="3d-buildings"
+          type="fill-extrusion"
+          source="composite"
+          sourceLayer="building"
+          [filter]="['==', 'extrude', 'true']"
+          [paint]="{
+          'fill-extrusion-color': '#aaa',
+          'fill-extrusion-height': [
+          'interpolate', ['linear'], ['zoom'],
+          15, 0,
+          15.05, ['get', 'height']
+          ],
+          'fill-extrusion-base': [
+          'interpolate', ['linear'], ['zoom'],
+          15, 0,
+          15.05, ['get', 'min_height']
+          ],
+          'fill-extrusion-opacity': 0.6
+          }">
+          </mgl-layer>
+          </mgl-map>
+          <br>
+      </div>
+      <br>
+  </div>
+</div>
+<div class="card">
+  <div class="card-body">
+      <blockquote class="blockquote mb-0">
+          <p>M.G</p>
+          <footer class="blockquote-footer">POC <cite title="Source Title"></cite>Proof of Concept @2024</footer>
+      </blockquote>
   </div>
 </div>
